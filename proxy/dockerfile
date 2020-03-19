@@ -1,0 +1,19 @@
+FROM nginx
+# https://github.com/dockerfile/nginx/blob/master/Dockerfile
+
+
+ARG SECRET
+ENV SECRET=$SECRET
+
+# nginx config folder
+COPY proxy/nginx/ /etc/nginx/
+
+# nginx config
+COPY proxy/dynamic/nginx.conf /tmp/nginx.conf
+
+#dhparam.pem - used for ssl
+COPY proxy/ssl/dhparam.pem /etc/ssl/certs/dhparam.pem
+
+# populate $SECRET in nginx.conf
+# http://nginx.org/en/docs/faq/variables_in_config.html
+RUN envsubst '\$SECRET' < /tmp/nginx.conf > /etc/nginx/nginx.conf

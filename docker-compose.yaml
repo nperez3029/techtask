@@ -1,0 +1,29 @@
+version: '3.7'
+networks:
+  pan:
+services:
+  proxy:
+    container_name: proxy
+    hostname: proxy
+    image: proxy:latest
+    environment:
+      - SECRET=${SECRET}
+    networks:
+      - pan
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+  web:
+    container_name: web
+    hostname: web
+    image: web:latest
+    environment:
+      - SECRET=${SECRET}
+    networks:
+      - pan
+    restart: always
+
+
+
+

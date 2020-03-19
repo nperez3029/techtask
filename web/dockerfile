@@ -1,0 +1,23 @@
+FROM nginx
+# https://github.com/dockerfile/nginx/blob/master/Dockerfile
+
+ARG SECRET
+ENV SECRET=$SECRET
+
+# testing
+#RUN echo ARGS is $SECRET
+#RUN echo ENV is $SECRET
+#RUN echo /usr/share/nginx/html/${SECRET}/index.html
+
+# generate folder structure
+RUN mkdir -p /usr/share/nginx/html/${SECRET}/
+
+# index.html
+COPY web/nginx/index.html /usr/share/nginx/html/${SECRET}/index.html
+
+#config file
+COPY /web/nginx/nginx.conf /tmp/nginx.conf
+
+# populate $SECRET in nginx.conf
+# http://nginx.org/en/docs/faq/variables_in_config.html
+RUN envsubst '\$SECRET' < /tmp/nginx.conf > /etc/nginx/nginx.conf
