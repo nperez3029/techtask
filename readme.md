@@ -21,7 +21,7 @@ make sure "--build-arg SECRET=" matches the content of .env
 > user:password
 
 2) Using a private browser, connect to the following URL:  
-> https://localhost/EGZk0r5buXc5YlKHpoMaluUxNkzIq/index.html
+> https://x.x.x.x/EGZk0r5buXc5YlKHpoMaluUxNkzIq/index.html
 
 
 
