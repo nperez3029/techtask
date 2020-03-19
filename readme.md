@@ -40,7 +40,7 @@ fa70308c321b        web:latest                                     "nginx -g 'da
 Secrets are saved on the `web` container. The 'web' container will listen on the docker network 'pan' using tcp 80. 
 
 
-The `proxy` container will handle authentication, redirect http traffic to https and only serve traffic if the client presents the correct URI to the reverse proxy. 
+The `proxy` container listens on tcp 80 and 443 for all interfaces. This container will handle authentication, redirect http traffic to https and only serve traffic if the client presents the correct URI to the reverse proxy. 
 
 
 
