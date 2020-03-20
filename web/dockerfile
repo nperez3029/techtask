@@ -13,10 +13,10 @@ ENV SECRET=$SECRET
 RUN mkdir -p /usr/share/nginx/html/${SECRET}/
 
 # index.html
-COPY web/nginx/index.html /usr/share/nginx/html/${SECRET}/index.html
+COPY ./nginx/index.html /usr/share/nginx/html/${SECRET}/index.html
 
 #config file
-COPY /web/nginx/nginx.conf /tmp/nginx.conf
+COPY ./nginx/nginx.conf /tmp/nginx.conf
 
 # populate $SECRET in nginx.conf
 # http://nginx.org/en/docs/faq/variables_in_config.html

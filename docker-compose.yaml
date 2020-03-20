@@ -5,9 +5,12 @@ services:
   proxy:
     container_name: proxy
     hostname: proxy
-    image: proxy:latest
-    environment:
-      - SECRET=${SECRET}
+    build:
+      context: ./proxy
+      args:
+        - SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq1
+    env_file:
+      - ./.env
     networks:
       - pan
     ports:
@@ -18,8 +21,12 @@ services:
     container_name: web
     hostname: web
     image: web:latest
-    environment:
-      - SECRET=${SECRET}
+    build:
+      context: ./web
+      args:
+        - SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq1
+    env_file:
+      - ./.env
     networks:
       - pan
     restart: always

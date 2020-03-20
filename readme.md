@@ -2,16 +2,30 @@
 1) Set your secret in `.env`
 > SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq
 
-2) build the images 
-> docker build -t web:latest --no-cache --build-arg SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq --file web/dockerfile .
-> docker build -t proxy:latest --no-cache --build-arg SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq --file proxy/dockerfile .
+2) Set your secret in `docker-compose.yaml`
 
 Note:
 make sure "--build-arg SECRET=" matches the content of .env
 
 
+```
+    build:
+      context: ./proxy
+      args:
+        - SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq1
+```
+
+```
+    build:
+      context: ./web
+      args:
+        - SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq1
+```
+
 3) deploy the solution 
-> docker-compose up -d
+> docker-compose up -d --build
+
+
 
 
 
@@ -21,7 +35,7 @@ make sure "--build-arg SECRET=" matches the content of .env
 > user:password
 
 2) Using a private browser, connect to the following URL:  
-> https://x.x.x.x/EGZk0r5buXc5YlKHpoMaluUxNkzIq/index.html
+> https://localhost/EGZk0r5buXc5YlKHpoMaluUxNkzIq/index.html
 
 
 
@@ -37,10 +51,9 @@ fa70308c321b        web:latest                                     "nginx -g 'da
 ```
 
 
-Secrets are saved on the `web` container. The 'web' container will listen on the docker network 'pan' using tcp 80. 
+Secrets are saved on the `web` container. 
 
-
-The `proxy` container listens on tcp 80 and 443 for all interfaces. This container will handle authentication, redirect http traffic to https and only serve traffic if the client presents the correct URI to the reverse proxy. 
+The `proxy` container will handle authentication. 
 
 
 

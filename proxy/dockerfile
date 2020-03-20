@@ -6,13 +6,13 @@ ARG SECRET
 ENV SECRET=$SECRET
 
 # nginx config folder
-COPY proxy/nginx/ /etc/nginx/
+COPY ./nginx/ /etc/nginx/
 
 # nginx config
-COPY proxy/dynamic/nginx.conf /tmp/nginx.conf
+COPY ./dynamic/nginx.conf /tmp/nginx.conf
 
 #dhparam.pem - used for ssl
-COPY proxy/ssl/dhparam.pem /etc/ssl/certs/dhparam.pem
+COPY ./ssl/dhparam.pem /etc/ssl/certs/dhparam.pem
 
 # populate $SECRET in nginx.conf
 # http://nginx.org/en/docs/faq/variables_in_config.html
