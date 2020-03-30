@@ -5,7 +5,7 @@
 2) Set your secret in `docker-compose.yaml`
 
 Note:
-make sure "--build-arg SECRET=" matches the content of .env
+make sure "SECRET" matches the content of .env
 
 
 ```
