@@ -1,6 +1,6 @@
 ## How to build 
 1) Set your secret in `.env`
-> SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq
+> SECRET=EGZk0r5buXc5YlKHpoMaluUxNkzIq1
 
 2) Set your secret in `docker-compose.yaml`
 
